@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+/*
+ * Identidade visual derivada do Instagram @fiodobigodepiracicaba:
+ * madeira escura, latão/dourado envelhecido, creme e o vermelho do poste de
+ * barbeiro. Tema escuro no site e na conta do cliente; painel admin em papel claro.
+ */
+@theme {
+  --color-ink: #0f0c0a;
+  --color-ink-2: #17120e;
+  --color-wood: #241a12;
+  --color-wood-2: #2f2117;
+  --color-cream: #f3ead7;
+  --color-muted: #b9ab92;
+  --color-brass: #c9993f;
+  --color-brass-hi: #e3bb63;
+  --color-brass-dim: #8a6a2b;
+  --color-pole-red: #a3312b;
+  --color-pole-blue: #2f4c6d;
+  --color-ok: #7fae68;
+  --color-warn: #e0a44a;
+  --color-danger: #d9695a;
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-barlow), system-ui, sans-serif;
+  --font-label: var(--font-barlow-condensed), var(--font-barlow), sans-serif;
+
+  --animate-rise: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+  --animate-pulse-soft: pulse-soft 1.6s ease-in-out infinite;
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+  }
+}
+
+:root {
+  color-scheme: dark;
+  /* Tokens semânticos: os componentes usam SOMENTE estes (bg-bg, text-fg, bg-panel...). */
+  --c-bg: #0f0c0a;
+  --c-panel: #17120e;
+  --c-panel-2: #201811;
+  --c-fg: #f3ead7;
+  --c-soft: #b9ab92;
+  --c-edge: rgba(227, 187, 99, 0.18);
+  --c-accent: #c9993f;
+  --c-accent-hi: #e3bb63;
+  --c-accent-fg: #17100a;
+  --c-danger: #e0796a;
+  --c-ok: #8fbd78;
+  --c-warn: #e6ae55;
+}
+
+.admin-shell {
+  color-scheme: light;
+  --c-bg: #f4efe4;
+  --c-panel: #fffdf8;
+  --c-panel-2: #f0e9d9;
+  --c-fg: #1c1610;
+  --c-soft: #6b5d49;
+  --c-edge: #e0d5bf;
+  --c-accent: #8a5a00;
+  --c-accent-hi: #6f4700;
+  --c-accent-fg: #fffaf0;
+  --c-danger: #b23a2b;
+  --c-ok: #3f7a2e;
+  --c-warn: #98620a;
+}
+
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-panel: var(--c-panel);
+  --color-panel-2: var(--c-panel-2);
+  --color-fg: var(--c-fg);
+  --color-soft: var(--c-soft);
+  --color-edge: var(--c-edge);
+  --color-accent: var(--c-accent);
+  --color-accent-hi: var(--c-accent-hi);
+  --color-accent-fg: var(--c-accent-fg);
+  --color-bad: var(--c-danger);
+  --color-good: var(--c-ok);
+  --color-caution: var(--c-warn);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--c-bg);
+  color: var(--c-fg);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.admin-shell {
+  background: var(--c-bg);
+  color: var(--c-fg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--c-accent-hi);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.admin-shell :focus-visible { outline-color: var(--c-accent); }
+
+::selection { background: var(--color-brass); color: var(--color-ink); }
+
+/* Textura de papel/madeira discreta: SVG inline, sem requisição extra. */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Poste de barbeiro: listras diagonais. */
+.pole {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-cream) 0 14px,
+    var(--color-pole-red) 14px 28px,
+    var(--color-cream) 28px 42px,
+    var(--color-pole-blue) 42px 56px
+  );
+  background-size: 80px 80px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pole-anim { animation: pole-move 6s linear infinite; }
+  @keyframes pole-move { to { background-position: 0 80px; } }
+}
+
+.brass-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-brass-dim), var(--color-brass), var(--color-brass-dim), transparent);
+}
+
+.label-caps {
+  font-family: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  letter-spacing: -0.01em;
+}
+
+/* Scrollbar discreta */
+* { scrollbar-width: thin; scrollbar-color: var(--color-brass-dim) transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

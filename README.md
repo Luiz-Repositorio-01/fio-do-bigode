@@ -2,7 +2,7 @@
 
 > ## ⚠️ VERSÃO DE DEMONSTRAÇÃO
 > Enquanto o cliente não aprova o produto, **nada é real**: os dados ficam **somente no
-> `localStorage` do navegador** de quem abre o site; não há banco, e-mail, WhatsApp automático nem
+> `localStorage` do navegador** de quem abre o site (um agendamento feito no celular do cliente **não aparece** no painel aberto em outro aparelho — para demonstrar o fluxo completo, use o mesmo navegador); não há banco, e-mail, WhatsApp automático nem
 > pagamento. O login é **sem verificação** (só para demonstrar as telas). Não use com dados reais de clientes.
 > O banco de produção (Supabase) está **preparado e testado localmente, mas não aplicado** — ver
 > [`docs/DATABASE.md`](docs/DATABASE.md). **Nada foi publicado (deploy/push).**
@@ -23,14 +23,14 @@ barbeiros e horários, fidelidade (regras e níveis), recompensas, campanhas + l
 
 ```bash
 npm install
-npm run dev            # http://localhost:3000   (admin demo: /admin → "Entrar como demonstração")
+npm run dev            # http://localhost:3000   (admin demo: /admin → "Entrar no painel de demonstração"; já carrega clientes/agenda fictícios "Demo")
 npm run check          # tsc + eslint + vitest + build
 npm run e2e            # fluxos ponta a ponta (Playwright, precisa de Chromium e de `npm run start`/dev)
 npm run e2e:responsive # 26 rotas × 9 larguras, sem overflow horizontal
 ./supabase/tests/run.sh # migrations + testes SQL/concorrência em PostgreSQL LOCAL
 ```
 
-Variáveis: ver [`.env.example`](.env.example) (todas opcionais na demo).
+Variáveis: ver [`.env.example`](.env.example) (todas opcionais na demo). A demo é **noindex** (`robots.txt` bloqueia tudo); no lançamento real defina `NEXT_PUBLIC_ALLOW_INDEXING=true`.
 
 ## Arquitetura (pensada para trocar a demo pelo backend real sem reescrever a UI)
 
@@ -73,8 +73,13 @@ indicação (pontos só quando o indicado conclui o 1º atendimento, com limite 
 
 Preços e nomes de serviços, endereço, WhatsApp e horários vêm do Avec/Instagram públicos da barbearia
 (fontes em `src/config/seed.ts`). **Marcados como [INFORMAÇÃO NÃO ENCONTRADA]/não confirmados:** duração real de cada
-serviço, foto/logo, bio e especialidades dos barbeiros, regras de fidelidade, avaliações próprias. Fotos **não foram
-baixadas**; suba pela galeria do painel (ou autorize o download).
+serviço, especialidades dos barbeiros, regras de fidelidade, avaliações próprias.
+
+**Fotos e logo (demonstração):** o logo oficial e as imagens da equipe/galeria vieram do Instagram público da barbearia
+(@fiodobigodepiracicaba), otimizados em `public/fotos` e `public/brand`, e referenciados em `src/config/seed.ts`
+(`SEED_GALLERY`, `photoUrl`). Os retratos da equipe (e a foto do destaque) parecem imagens geradas/editadas por IA
+(marca d'água em forma de estrela no canto). **Antes de lançar: confirmar com a barbearia a autorização de uso e, de
+preferência, trocar por fotos reais** (Painel → Galeria e Barbeiros).
 
 ## Deploy (não executado)
 
