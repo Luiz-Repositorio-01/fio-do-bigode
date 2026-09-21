@@ -33,11 +33,22 @@ export const ALLOW_INDEXING = process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true";
 const AVEC_URL = "https://www.avec.app/fio-do-bigodebarbershop/";
 const INSTAGRAM_URL = "https://www.instagram.com/fiodobigodepiracicaba/";
 
+/** URL pública do site. Valor ausente, vazio ou inválido cai no localhost (evita quebrar o build). */
+function resolveSiteUrl(): string {
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (!raw) return "http://localhost:3000";
+  try {
+    return new URL(raw).origin;
+  } catch {
+    return "http://localhost:3000";
+  }
+}
+
 export const SITE = {
   name: "Fio do Bigode",
   fullName: "Fio do Bigode Barbearia",
   city: "Piracicaba",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: resolveSiteUrl(),
 } as const;
 
 const TUE_WED: Weekday[] = [2, 3];
