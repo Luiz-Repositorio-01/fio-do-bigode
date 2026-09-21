@@ -32,11 +32,11 @@ export default function HomePage() {
       <Hero />
 
       <Section id="servicos">
-        <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
+        <div className="mb-7 flex flex-wrap items-end justify-between gap-x-6 gap-y-4 md:mb-12">
           <SectionHeading
             eyebrow="Serviços"
             title="Do corte à barba com toalha quente."
-            description="Valores publicados pela barbearia. Em alguns serviços o preço final pode variar conforme o atendimento."
+            description="Valores publicados pela barbearia. Em alguns serviços o preço final pode variar."
           />
           <Link href="/servicos" className="label-caps text-sm text-accent-hi underline-offset-8 hover:underline">
             Ver todos os serviços
@@ -46,18 +46,18 @@ export default function HomePage() {
       </Section>
 
       <Section id="barbeiros" tone="panel">
-        <div className="mb-12">
+        <div className="mb-7 md:mb-12">
           <SectionHeading
             eyebrow="Equipe"
             title="Quem cuida de você."
             description="Escolha seu barbeiro na hora de agendar, ou deixe o sistema encontrar o primeiro horário livre."
           />
         </div>
-        <TeamGrid />
+        <TeamGrid carousel />
       </Section>
 
       <Section id="como-funciona">
-        <div className="mb-12">
+        <div className="mb-7 md:mb-12">
           <SectionHeading eyebrow="Como funciona" title="Agendar leva menos de um minuto." />
         </div>
         <HowItWorks />
@@ -68,21 +68,21 @@ export default function HomePage() {
       </Section>
 
       <Section id="avaliacoes" tone="panel">
-        <div className="mb-10">
+        <div className="mb-7 md:mb-10">
           <SectionHeading eyebrow="Avaliações" title="O que os clientes dizem." />
         </div>
-        <Reviews limit={6} />
+        <Reviews limit={6} carousel />
       </Section>
 
       <Section id="galeria">
-        <div className="mb-10">
+        <div className="mb-7 md:mb-10">
           <SectionHeading eyebrow="Galeria" title="O ambiente, a equipe e o trabalho." />
         </div>
-        <GalleryGrid limit={6} />
+        <GalleryGrid limit={8} carousel />
       </Section>
 
       <Section id="localizacao" tone="panel">
-        <div className="mb-10">
+        <div className="mb-7 md:mb-10">
           <SectionHeading eyebrow="Localização" title="No coração do São Dimas." />
         </div>
         <Location />

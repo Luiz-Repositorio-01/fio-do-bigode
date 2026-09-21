@@ -10,10 +10,10 @@ export function LoyaltyTeaser() {
 
   if (!settings.loyalty.enabled) return null;
   return (
-    <div className="grain relative grid gap-10 overflow-hidden rounded-md border border-accent/30 bg-wood p-7 md:grid-cols-[1.1fr_.9fr] md:p-12">
+    <div className="grain relative grid gap-7 overflow-hidden rounded-md border border-accent/30 bg-wood p-5 sm:p-7 md:grid-cols-[1.1fr_.9fr] md:gap-10 md:p-12">
       <div className="relative">
         <p className="label-caps text-sm text-accent-hi">Programa de fidelidade</p>
-        <h2 className="display mt-3 text-[clamp(1.9rem,4vw,2.9rem)] leading-[1.08]">
+        <h2 className="display mt-3 text-[clamp(1.7rem,4vw,2.9rem)] leading-[1.08]">
           Cada visita aproxima você de novos benefícios.
         </h2>
         <p className="mt-4 max-w-md text-soft">
@@ -24,11 +24,11 @@ export function LoyaltyTeaser() {
           Como funciona <IconArrow />
         </LinkButton>
       </div>
-      <ol className="relative space-y-2.5" aria-label="Níveis do programa">
+      <ol className="relative grid grid-cols-2 gap-2.5 md:block md:space-y-2.5" aria-label="Níveis do programa">
         {sorted.map((l, i) => (
           <li
             key={l.id}
-            className="flex items-center justify-between rounded border border-edge bg-bg/50 px-4 py-3"
+            className="flex flex-col items-start gap-1.5 rounded border border-edge bg-bg/50 px-3.5 py-3 md:flex-row md:items-center md:justify-between md:px-4"
           >
             <span className="flex items-center gap-3">
               {l.isVip ? (
@@ -38,7 +38,7 @@ export function LoyaltyTeaser() {
               )}
               <span className="display text-lg">{l.name}</span>
             </span>
-            <span className="label-caps text-xs text-soft">
+            <span className="label-caps text-[11px] text-soft md:text-xs">
               {i === 0 ? "Ao se cadastrar" : `${l.minPoints} pontos`}
             </span>
           </li>

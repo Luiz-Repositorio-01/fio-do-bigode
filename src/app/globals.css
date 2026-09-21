@@ -157,6 +157,16 @@ body {
 }
 
 /* Scrollbar discreta */
+/* Carrossel horizontal com snap (mobile). */
+.snap-row {
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1.25rem;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.snap-row::-webkit-scrollbar { display: none; }
+.snap-row > * { scroll-snap-align: start; }
+
 * { scrollbar-width: thin; scrollbar-color: var(--color-brass-dim) transparent; }
 
 @media (prefers-reduced-motion: reduce) {

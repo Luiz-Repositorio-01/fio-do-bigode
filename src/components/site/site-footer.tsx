@@ -12,7 +12,7 @@ export function SiteFooter() {
   const schedule = groupedSchedule(businessSchedule(hours));
 
   return (
-    <footer className="mt-24 border-t border-edge bg-panel">
+    <footer className="border-t border-edge bg-panel">
       <div className="brass-rule" />
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-[1.3fr_1fr_1fr]">
         <div>
@@ -81,7 +81,7 @@ export function SiteFooter() {
           <dl className="space-y-2 text-sm">
             {schedule.map((row) => (
               <div key={row.label} className="flex justify-between gap-4">
-                <dt className="text-soft">{row.label}</dt>
+                <dt className="text-soft">{row.label.replace(/-feira/g, "")}</dt>
                 <dd className="tabular-nums">{row.value}</dd>
               </div>
             ))}

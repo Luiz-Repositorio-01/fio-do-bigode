@@ -74,8 +74,35 @@ function reducer(d: Draft, a: Action): Draft {
 
 function Stepper({ step, onGo, maxReached }: { step: Step; onGo: (s: Step) => void; maxReached: Step }) {
   return (
-    <nav aria-label="Etapas do agendamento" className="mb-8">
-      <ol className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:gap-2">
+    <nav aria-label="Etapas do agendamento" className="mb-6 sm:mb-8">
+      <div className="sm:hidden">
+        <p className="label-caps text-[12px] text-soft">
+          <span className="text-accent-hi">
+            Etapa {step} de {STEP_LABELS.length}
+          </span>{" "}
+          · {STEP_LABELS[step - 1]}
+        </p>
+        <div className="mt-2.5 flex gap-1.5">
+          {STEP_LABELS.map((label, i) => {
+            const n = (i + 1) as Step;
+            const reachable = n <= maxReached && n !== step;
+            return (
+              <button
+                key={label}
+                type="button"
+                disabled={!reachable}
+                onClick={() => onGo(n)}
+                aria-label={`Etapa ${n}: ${label}`}
+                aria-current={n === step ? "step" : undefined}
+                className={`h-1.5 flex-1 rounded-full transition-colors ${
+                  n === step ? "bg-accent" : n < step ? "bg-accent/50" : "bg-edge"
+                }`}
+              />
+            );
+          })}
+        </div>
+      </div>
+      <ol className="hidden items-center gap-2 overflow-x-auto pb-1 sm:flex">
         {STEP_LABELS.map((label, i) => {
           const n = (i + 1) as Step;
           const done = n < step;
@@ -327,10 +354,10 @@ export function BookingFlow() {
             Use o link seguro deste agendamento ou a sua conta, até {state.settings.customerChangeLimitHours}h antes do horário.
           </Notice>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <LinkButton href={`/agendamento/${done.appointment.manageToken}`} variant="secondary" className="flex-1">
+            <LinkButton href={`/agendamento/${done.appointment.manageToken}`} variant="secondary" className="sm:flex-1">
               Gerenciar este agendamento
             </LinkButton>
-            <LinkButton href="/minha-conta" className="flex-1">
+            <LinkButton href="/minha-conta" className="sm:flex-1">
               Ir para Minha conta
             </LinkButton>
           </div>
@@ -360,7 +387,7 @@ export function BookingFlow() {
                   <button
                     type="button"
                     onClick={() => chooseService(s.id)}
-                    className={`flex w-full flex-col items-start justify-between gap-1 rounded-md border px-5 py-4 text-left transition-colors min-[400px]:flex-row min-[400px]:items-center min-[400px]:gap-4 ${
+                    className={`flex w-full items-center justify-between gap-3 rounded-md border px-4 py-3.5 text-left transition-colors sm:gap-4 sm:px-5 sm:py-4 ${
                       draft.serviceId === s.id ? "border-accent bg-accent/10" : "border-edge bg-panel hover:border-accent"
                     }`}
                   >
@@ -368,7 +395,7 @@ export function BookingFlow() {
                       <span className="display block text-lg leading-tight">{s.name}</span>
                       <span className="label-caps mt-1 block text-[11px] text-soft">{formatDuration(s.durationMinutes)}</span>
                     </span>
-                    <span className="display shrink-0 text-lg tabular-nums">
+                    <span className="display shrink-0 text-right text-[1.05rem] tabular-nums sm:text-lg">
                       {formatPrice(p, s.priceIsStartingAt && p === s.priceCents)}
                     </span>
                   </button>
@@ -418,9 +445,20 @@ export function BookingFlow() {
                     }}
                     className="flex h-full w-full items-center gap-4 rounded-md border border-edge bg-panel px-5 py-4 text-left transition-colors hover:border-accent"
                   >
-                    <span className="display flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-accent/50 bg-wood text-2xl text-accent">
-                      {p.name[0]}
-                    </span>
+                    {p.photoUrl ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={p.photoUrl}
+                        alt=""
+                        width={48}
+                        height={48}
+                        className="h-12 w-12 shrink-0 rounded-full border border-accent/50 object-cover object-top"
+                      />
+                    ) : (
+                      <span className="display flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-accent/50 bg-wood text-2xl text-accent">
+                        {p.name[0]}
+                      </span>
+                    )}
                     <span>
                       <span className="display block text-lg">{p.name}</span>
                       <span className="label-caps text-[11px] text-soft">
@@ -504,7 +542,7 @@ export function BookingFlow() {
             </div>
           )}
 
-          <div className="mt-8 flex flex-wrap justify-between gap-3">
+          <div className="sticky bottom-0 z-30 -mx-5 mt-6 flex items-center justify-between gap-3 border-t border-edge bg-bg/95 px-5 py-3 backdrop-blur md:static md:mx-0 md:mt-8 md:border-0 md:bg-transparent md:p-0 md:backdrop-blur-none">
             <Button variant="ghost" onClick={() => goTo(2)}>← Voltar</Button>
             <Button disabled={!draft.startsAt || !slotStillFree} onClick={() => goTo(4)}>
               Continuar

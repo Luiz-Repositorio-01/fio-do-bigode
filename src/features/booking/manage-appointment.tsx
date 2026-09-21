@@ -62,8 +62,8 @@ export function ManageAppointment({ token }: { token: string }) {
             <BookingActions appointment={appointment} customer={customer} professional={professional} />
           </div>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <Button variant="secondary" className="flex-1" onClick={() => setRescheduleOpen(true)}>Remarcar</Button>
-            <Button variant="danger" className="flex-1" onClick={() => setCancelOpen(true)}>Cancelar</Button>
+            <Button variant="secondary" className="sm:flex-1" onClick={() => setRescheduleOpen(true)}>Remarcar</Button>
+            <Button variant="danger" className="sm:flex-1" onClick={() => setCancelOpen(true)}>Cancelar</Button>
           </div>
           <p className="mt-3 text-xs text-soft">
             Alterações pelo site são permitidas até {state.settings.customerChangeLimitHours}h antes do horário.

@@ -7,12 +7,12 @@ const STEPS = [
 
 export function HowItWorks() {
   return (
-    <ol className="grid gap-px overflow-hidden rounded-md border border-edge bg-edge sm:grid-cols-2 lg:grid-cols-4">
+    <ol className="grid grid-cols-2 gap-px overflow-hidden rounded-md border border-edge bg-edge lg:grid-cols-4">
       {STEPS.map((s) => (
-        <li key={s.n} className="bg-panel p-6">
-          <span className="display text-4xl text-accent">{s.n}</span>
-          <h3 className="display mt-4 text-xl">{s.title}</h3>
-          <p className="mt-2 text-[15px] text-soft">{s.text}</p>
+        <li key={s.n} className="bg-panel p-4 sm:p-6">
+          <span className="display text-3xl text-accent sm:text-4xl">{s.n}</span>
+          <h3 className="display mt-2 text-[1.05rem] leading-snug sm:mt-4 sm:text-xl">{s.title}</h3>
+          <p className="mt-1.5 text-[13.5px] leading-snug text-soft sm:mt-2 sm:text-[15px]">{s.text}</p>
         </li>
       ))}
     </ol>

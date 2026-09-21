@@ -7,7 +7,7 @@ import { useBusiness } from "@/hooks/use-business";
 import { useAppState } from "@/lib/store/store";
 
 /** Fotos reais cadastradas no admin; enquanto não houver, convida para o Instagram. */
-export function GalleryGrid({ limit }: { limit?: number }) {
+export function GalleryGrid({ limit, carousel = false }: { limit?: number; carousel?: boolean }) {
   const { gallery } = useAppState();
   const { business } = useBusiness();
   const images = limit ? gallery.slice(0, limit) : gallery;
@@ -42,9 +42,24 @@ export function GalleryGrid({ limit }: { limit?: number }) {
 
   return (
     <div>
-      <ul className="grid grid-cols-2 gap-3 md:grid-cols-3">
+      <ul
+        className={
+          carousel
+            ? "snap-row -mx-5 flex gap-3 overflow-x-auto px-5 pb-3 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0"
+            : "grid grid-cols-2 gap-3 md:grid-cols-3"
+        }
+      >
         {images.map((g, i) => (
-          <li key={g.id} className={i === 0 ? "col-span-2 row-span-2" : "aspect-[4/5]"}>
+          <li
+            key={g.id}
+            className={
+              carousel
+                ? `aspect-[4/5] w-[62%] shrink-0 md:w-auto ${i === 0 ? "md:col-span-2 md:row-span-2 md:aspect-auto" : ""}`
+                : i === 0
+                  ? "col-span-2 row-span-2"
+                  : "aspect-[4/5]"
+            }
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={g.src}
@@ -56,14 +71,14 @@ export function GalleryGrid({ limit }: { limit?: number }) {
           </li>
         ))}
       </ul>
-      <div className="mt-8 text-center">
+      <div className="mt-5 text-center md:mt-8">
         <AnchorButton
           href={business.instagram.url}
           target="_blank"
           rel="noopener noreferrer"
           variant="secondary"
         >
-          <IconInstagram /> Ver mais no @{business.instagram.handle}
+          <IconInstagram /> Ver mais no Instagram
         </AnchorButton>
       </div>
     </div>

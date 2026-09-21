@@ -7,12 +7,12 @@ export function PriceTag({ service, align = "right" }: { service: Service; align
   const rule = service.priceRules[0];
   return (
     <div className={align === "right" ? "text-right" : "text-left"}>
-      <p className="display text-xl tabular-nums leading-tight">
+      <p className="display text-[1.15rem] tabular-nums leading-tight sm:text-xl">
         {service.priceCents === null ? (
           "Consultar"
         ) : service.priceIsStartingAt ? (
           <>
-            <span className="label-caps mr-1.5 text-[11px] text-soft">a partir de</span>
+            <span className="label-caps block text-[10px] text-soft sm:mr-1.5 sm:inline sm:text-[11px]">a partir de</span>
             {formatBRL(service.priceCents)}
           </>
         ) : (

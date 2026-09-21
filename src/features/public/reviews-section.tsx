@@ -4,7 +4,7 @@ import { IconStar } from "@/components/ui/icons";
 import { formatDateBR } from "@/domain/time";
 import { useAppState } from "@/lib/store/store";
 
-export function Reviews({ limit }: { limit?: number }) {
+export function Reviews({ limit, carousel = false }: { limit?: number; carousel?: boolean }) {
   const { reviews, business } = useAppState();
   const published = reviews
     .filter((r) => r.published)
@@ -15,8 +15,8 @@ export function Reviews({ limit }: { limit?: number }) {
   return (
     <div>
       {business.rating && (
-        <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2">
-          <p className="display text-6xl tabular-nums">{business.rating.value.toFixed(1).replace(".", ",")}</p>
+        <div className="mb-6 flex flex-wrap items-center gap-x-6 gap-y-2 md:mb-8">
+          <p className="display text-5xl tabular-nums md:text-6xl">{business.rating.value.toFixed(1).replace(".", ",")}</p>
           <div>
             <span className="flex text-accent-hi" aria-label={`Nota ${business.rating.value} de 5`}>
               {Array.from({ length: 5 }, (_, i) => (
@@ -37,9 +37,18 @@ export function Reviews({ limit }: { limit?: number }) {
           </div>
         </div>
       )}
-      <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <ul
+        className={
+          carousel
+            ? "snap-row -mx-5 flex gap-3 overflow-x-auto px-5 pb-3 md:mx-0 md:grid md:grid-cols-2 md:gap-4 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3"
+            : "grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+        }
+      >
         {list.map((r) => (
-          <li key={r.id} className="flex flex-col justify-between rounded-md border border-edge bg-panel p-5">
+          <li
+            key={r.id}
+            className={`flex flex-col justify-between rounded-md border border-edge bg-panel p-5 ${carousel ? "w-[82%] shrink-0 md:w-auto" : ""}`}
+          >
             <blockquote className="display text-lg leading-snug">“{r.text}”</blockquote>
             <p className="mt-5 text-sm text-soft">
               <span className="text-fg">{r.authorName}</span> · {formatDateBR(r.date)} ·{" "}

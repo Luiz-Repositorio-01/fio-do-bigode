@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { SERVICE_GROUPS } from "@/config/seed";
 import { formatDuration } from "@/domain/pricing";
+import { IconChevron } from "@/components/ui/icons";
 import { track } from "@/lib/analytics";
 import { useAppState } from "@/lib/store/store";
 import type { Service } from "@/types";
@@ -10,22 +11,30 @@ import { PriceTag } from "./price-tag";
 
 function ServiceRow({ service }: { service: Service }) {
   return (
-    <li className="group grid gap-x-6 gap-y-3 border-b border-edge py-5 sm:grid-cols-[1fr_auto_auto] sm:items-center">
-      <div>
-        <h3 className="display text-[1.3rem] leading-snug">{service.name}</h3>
-        {service.description && <p className="mt-1 max-w-xl text-[15px] text-soft">{service.description}</p>}
-        <p className="label-caps mt-1.5 text-[11px] text-soft">
-          {service.durationConfirmed ? "" : "~"}
-          {formatDuration(service.durationMinutes)}
-        </p>
-      </div>
-      <PriceTag service={service} />
+    <li className="border-b border-edge">
       <Link
         href={`/agendar?servico=${service.id}`}
         onClick={() => track("select_service", { service: service.name, origin: "service_list" })}
-        className="label-caps inline-flex h-10 items-center justify-center rounded-[3px] border border-accent/60 px-5 text-sm text-accent-hi transition-colors hover:bg-accent hover:text-accent-fg sm:w-28"
+        className="group flex items-center gap-3 py-4 transition-colors active:bg-panel/70 sm:gap-6 sm:py-5"
       >
-        Agendar
+        <div className="min-w-0 flex-1">
+          <h3 className="display text-[1.12rem] leading-snug sm:text-[1.3rem]">{service.name}</h3>
+          {service.description && (
+            <p className="mt-1 hidden max-w-xl text-[15px] text-soft sm:block">{service.description}</p>
+          )}
+          <p className="label-caps mt-1 text-[11px] text-soft">
+            {service.durationConfirmed ? "" : "~"}
+            {formatDuration(service.durationMinutes)}
+          </p>
+        </div>
+        <PriceTag service={service} />
+        <span
+          aria-hidden
+          className="label-caps hidden h-10 w-28 items-center justify-center rounded-[3px] border border-accent/60 text-sm text-accent-hi transition-colors group-hover:bg-accent group-hover:text-accent-fg sm:inline-flex"
+        >
+          Agendar
+        </span>
+        <IconChevron aria-hidden className="h-5 w-5 shrink-0 text-accent sm:hidden" />
       </Link>
     </li>
   );
@@ -48,7 +57,7 @@ export function ServiceList({ limitPerGroup }: { limitPerGroup?: number }) {
   if (others.length) groups.push({ key: "outros", label: "Outros serviços", items: others });
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-9 sm:space-y-12">
       {groups
         .filter((g) => g.items.length)
         .map((g) => (

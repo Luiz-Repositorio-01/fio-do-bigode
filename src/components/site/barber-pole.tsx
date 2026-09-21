@@ -30,9 +30,9 @@ function Screw() {
   return (
     <span
       aria-hidden
-      className="relative block h-[7px] w-[7px] rounded-full bg-[radial-gradient(circle_at_35%_30%,#f6e2a6,#a67a2a_60%,#4b3512)] shadow-[0_1px_1px_rgba(0,0,0,.7)]"
+      className="relative block h-[5px] w-[5px] lg:h-[7px] lg:w-[7px] rounded-full bg-[radial-gradient(circle_at_35%_30%,#f6e2a6,#a67a2a_60%,#4b3512)] shadow-[0_1px_1px_rgba(0,0,0,.7)]"
     >
-      <span className="absolute left-1/2 top-1/2 h-px w-[5px] -translate-x-1/2 -translate-y-1/2 rotate-[35deg] bg-[#2a1d09]" />
+      <span className="absolute left-1/2 top-1/2 h-px w-[4px] lg:w-[5px] -translate-x-1/2 -translate-y-1/2 rotate-[35deg] bg-[#2a1d09]" />
     </span>
   );
 }
@@ -41,7 +41,7 @@ function Plate({ className = "" }: { className?: string }) {
   return (
     <span
       aria-hidden
-      className={`absolute left-1/2 z-0 flex h-[15px] w-[168%] -translate-x-1/2 items-center justify-between rounded-[3px] border border-black/40 bg-[linear-gradient(180deg,#8a6a2b,#5a4016)] px-[3px] shadow-[0_2px_3px_rgba(0,0,0,.6)] ${className}`}
+      className={`absolute left-1/2 z-0 flex h-[11px] w-[176%] lg:h-[15px] lg:w-[168%] -translate-x-1/2 items-center justify-between rounded-[3px] border border-black/40 bg-[linear-gradient(180deg,#8a6a2b,#5a4016)] px-[2px] shadow-[0_2px_3px_rgba(0,0,0,.6)] ${className}`}
     >
       <Screw />
       <Screw />
@@ -208,16 +208,16 @@ export function BarberPole({ className = "" }: { className?: string }) {
   return (
     <div
       aria-hidden
-      className={`relative mx-auto flex h-full min-h-[300px] w-full flex-col items-center drop-shadow-[7px_9px_9px_rgba(0,0,0,.55)] ${className}`}
+      className={`relative mx-auto flex h-full min-h-[160px] w-full flex-col items-center drop-shadow-[4px_6px_6px_rgba(0,0,0,.5)] lg:drop-shadow-[7px_9px_9px_rgba(0,0,0,.55)] ${className}`}
     >
       {/* fixação superior */}
       <div className="relative z-10 flex w-full flex-col items-center">
-        <span className="block h-[9px] w-[9px] rounded-full bg-[radial-gradient(circle_at_35%_30%,#fbeab5,#b8862f_55%,#4b3512)]" />
+        <span className="block h-[6px] w-[6px] rounded-full lg:h-[9px] lg:w-[9px] bg-[radial-gradient(circle_at_35%_30%,#fbeab5,#b8862f_55%,#4b3512)]" />
         <div className="relative flex w-full items-center justify-center">
           <Plate className="top-1" />
-          <span className={`relative z-10 block h-[18px] w-[124%] rounded-t-[12px] border-x border-t border-black/40 ${brass}`} />
+          <span className={`relative z-10 block h-[12px] w-[130%] rounded-t-[8px] lg:h-[18px] lg:w-[124%] lg:rounded-t-[12px] border-x border-t border-black/40 ${brass}`} />
         </div>
-        <span className={`block h-[6px] w-[112%] border-x border-black/40 ${brass} brightness-90`} />
+        <span className={`block h-[4px] w-[114%] lg:h-[6px] lg:w-[112%] border-x border-black/40 ${brass} brightness-90`} />
       </div>
 
       {/* tubo de vidro com listras em rotação */}
@@ -227,12 +227,12 @@ export function BarberPole({ className = "" }: { className?: string }) {
 
       {/* fixação inferior */}
       <div className="relative z-10 flex w-full flex-col items-center">
-        <span className={`block h-[6px] w-[112%] border-x border-black/40 ${brass} brightness-90`} />
+        <span className={`block h-[4px] w-[114%] lg:h-[6px] lg:w-[112%] border-x border-black/40 ${brass} brightness-90`} />
         <div className="relative flex w-full items-center justify-center">
           <Plate className="bottom-1" />
-          <span className={`relative z-10 block h-[22px] w-[124%] rounded-b-[14px] border-x border-b border-black/40 ${brass}`} />
+          <span className={`relative z-10 block h-[14px] w-[130%] rounded-b-[9px] lg:h-[22px] lg:w-[124%] lg:rounded-b-[14px] border-x border-b border-black/40 ${brass}`} />
         </div>
-        <span className="block h-[9px] w-[9px] rounded-b-full bg-[radial-gradient(circle_at_35%_30%,#fbeab5,#b8862f_55%,#4b3512)]" />
+        <span className="block h-[6px] w-[6px] rounded-b-full lg:h-[9px] lg:w-[9px] bg-[radial-gradient(circle_at_35%_30%,#fbeab5,#b8862f_55%,#4b3512)]" />
       </div>
     </div>
   );

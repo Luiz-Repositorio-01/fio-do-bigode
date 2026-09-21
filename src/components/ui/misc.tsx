@@ -88,7 +88,7 @@ export function SectionHeading({
     <div className={align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
       {eyebrow && <p className="label-caps mb-3 text-sm text-accent-hi">{eyebrow}</p>}
       <h2 className="display text-[clamp(1.9rem,4.2vw,3rem)] leading-[1.08]">{title}</h2>
-      {description && <p className="mt-4 text-lg text-soft">{description}</p>}
+      {description && <p className="mt-3 text-base text-soft md:mt-4 md:text-lg">{description}</p>}
     </div>
   );
 }

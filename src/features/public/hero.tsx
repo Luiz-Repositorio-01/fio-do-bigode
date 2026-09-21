@@ -13,22 +13,28 @@ export function Hero() {
   return (
     <section className="grain relative isolate overflow-hidden border-b border-edge">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_75%_20%,rgba(201,153,63,.16),transparent_55%),linear-gradient(180deg,#1b130d,#0f0c0a)]" />
-      <div className="mx-auto grid max-w-6xl grid-cols-[2.75rem_1fr] items-center gap-x-5 gap-y-12 px-5 pt-14 pb-16 md:pt-20 md:pb-24 lg:grid-cols-[4rem_1.1fr_.8fr] lg:gap-x-12">
-        <div className="self-stretch" aria-hidden>
+      <div className="mx-auto grid max-w-6xl grid-cols-[1.75rem_1fr] gap-x-4 gap-y-8 px-5 pt-9 pb-12 md:pt-16 md:pb-20 lg:grid-cols-[3.25rem_1.1fr_.8fr] lg:gap-x-12 lg:gap-y-0 lg:pt-20 lg:pb-24">
+        <div className="col-start-1 row-start-1 h-[230px] sm:h-[260px] lg:row-span-2 lg:h-[400px] lg:self-center" aria-hidden>
           <BarberPole />
         </div>
-        <div className="animate-rise">
-          <p className="label-caps mb-5 text-sm text-accent-hi">Barbearia · São Dimas, Piracicaba</p>
-          <h1 className="display text-[clamp(2.2rem,7.4vw,5.6rem)] leading-[0.98] text-balance">
+
+        <div className="animate-rise col-start-2 row-start-1 lg:self-end">
+          <p className="label-caps mb-3 text-[12px] leading-snug text-accent-hi sm:mb-5 sm:text-sm">
+            Barbearia · São Dimas, Piracicaba
+          </p>
+          <h1 className="display text-[clamp(2.25rem,7.4vw,5.6rem)] leading-[0.98] text-balance">
             A mais clássica
             <br />
             de <em className="text-accent-hi not-italic">Piracicaba.</em>
           </h1>
-          <p className="mt-6 max-w-xl text-lg text-soft md:text-xl">
+          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-soft sm:mt-6 sm:text-lg md:text-xl">
             Barba feita com toalha quente, cortes tradicionais e modernos e acabamento impecável. Com horário
             agendado e pontual.
           </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+        </div>
+
+        <div className="animate-rise col-span-2 row-start-2 lg:col-span-1 lg:col-start-2 lg:self-start">
+          <div className="flex flex-col gap-3 sm:flex-row lg:mt-9">
             <LinkButton href="/agendar" size="lg" onClick={() => track("start_booking", { origin: "hero" })}>
               Agendar horário
               <IconArrow />
@@ -46,7 +52,7 @@ export function Hero() {
             </AnchorButton>
           </div>
 
-          <dl className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm">
+          <dl className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2.5 text-sm sm:mt-10 sm:gap-x-8">
             {business.rating && (
               <div className="flex items-center gap-2">
                 <dt className="sr-only">Avaliação</dt>
@@ -91,7 +97,7 @@ export function Hero() {
           </dl>
         </div>
 
-        <div className="relative col-span-2 mx-auto flex w-full max-w-xs items-center justify-center sm:max-w-sm lg:col-span-1 lg:max-w-none">
+        <div className="relative col-span-2 row-start-3 mx-auto flex w-full max-w-[15rem] items-center justify-center sm:max-w-xs lg:col-span-1 lg:col-start-3 lg:row-span-2 lg:row-start-1 lg:max-w-none">
           <div
             className="pointer-events-none absolute inset-[-12%] -z-10 bg-[radial-gradient(closest-side,rgba(201,153,63,.28),rgba(201,153,63,.08)_55%,transparent_75%)]"
             aria-hidden

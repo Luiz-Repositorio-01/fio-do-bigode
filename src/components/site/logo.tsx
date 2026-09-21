@@ -11,19 +11,15 @@ export function MoustacheMark({ className = "" }: { className?: string }) {
 
 export function Logo({ compact = false }: { compact?: boolean }) {
   return (
-    <Link href="/" className="group inline-flex items-center gap-3" aria-label="Fio do Bigode Barbearia — página inicial">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/brand/logo.jpg"
-        alt=""
-        width={40}
-        height={40}
-        className="h-10 w-10 shrink-0 rounded-full border border-accent/40 bg-white object-cover"
-      />
+    <Link href="/" className="group inline-flex items-center gap-2.5 min-[380px]:gap-3" aria-label="Fio do Bigode Barbearia — página inicial">
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-accent/50 bg-[radial-gradient(circle_at_50%_35%,#2a2018,#0f0c0a)] shadow-[0_0_0_3px_rgba(201,153,63,.08)]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/brand/emblema.webp" alt="" width={40} height={40} className="h-[34px] w-[34px] object-contain" />
+      </span>
       <span className="leading-none">
-        <span className="display block text-[1.35rem] tracking-[0.02em]">Fio do Bigode</span>
+        <span className="display block whitespace-nowrap text-[1.2rem] tracking-[0.02em] min-[380px]:text-[1.35rem]">Fio do Bigode</span>
         {!compact && (
-          <span className="label-caps mt-1 block text-[10.5px] text-soft">Barbearia · Piracicaba</span>
+          <span className="label-caps mt-1 block whitespace-nowrap text-[10px] text-soft min-[380px]:text-[10.5px]">Barbearia · Piracicaba</span>
         )}
       </span>
     </Link>

@@ -14,7 +14,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={`${tone === "panel" ? "border-y border-edge bg-panel" : ""} py-20 md:py-28 ${className}`}
+      className={`${tone === "panel" ? "border-y border-edge bg-panel" : ""} py-14 md:py-28 ${className}`}
     >
       <div className="mx-auto max-w-6xl px-5">{children}</div>
     </section>
@@ -33,10 +33,10 @@ export function PageHeader({
   return (
     <header className="grain relative isolate overflow-hidden border-b border-edge bg-wood">
       <div className="pole pole-anim absolute inset-x-0 bottom-0 h-1 opacity-70" aria-hidden />
-      <div className="mx-auto max-w-6xl px-5 py-16 md:py-24">
+      <div className="mx-auto max-w-6xl px-5 py-12 md:py-24">
         {eyebrow && <p className="label-caps mb-3 text-sm text-accent-hi">{eyebrow}</p>}
         <h1 className="display max-w-3xl text-[clamp(2.3rem,6vw,4.4rem)] leading-[1.03] text-balance">{title}</h1>
-        {description && <p className="mt-5 max-w-2xl text-lg text-soft">{description}</p>}
+        {description && <p className="mt-4 max-w-2xl text-base text-soft md:mt-5 md:text-lg">{description}</p>}
       </div>
     </header>
   );
