@@ -2,17 +2,12 @@
 
 import { AnchorButton, LinkButton } from "@/components/ui/button";
 import { IconArrow, IconStar, IconWhatsApp } from "@/components/ui/icons";
-import { MoustacheMark } from "@/components/site/logo";
-import { PhotoSlot } from "@/components/ui/misc";
 import { useBusiness, useOpenStatus } from "@/hooks/use-business";
 import { track } from "@/lib/analytics";
-import { useAppState } from "@/lib/store/store";
 
 export function Hero() {
   const { business, whatsapp } = useBusiness();
   const status = useOpenStatus();
-  const { gallery } = useAppState();
-  const heroPhoto = gallery[0]?.src ?? null;
 
   return (
     <section className="grain relative isolate overflow-hidden border-b border-edge">
@@ -95,26 +90,20 @@ export function Hero() {
           </dl>
         </div>
 
-        <div className="relative mx-auto w-full max-w-sm lg:max-w-none">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-t-[999px] rounded-b-md border border-accent/40 bg-wood p-2.5">
-            <div className="relative h-full w-full overflow-hidden rounded-t-[999px] rounded-b-[3px] border border-edge">
-              {heroPhoto ? (
-                <PhotoSlot src={heroPhoto} alt="Fio do Bigode Barbearia" className="h-full w-full" />
-              ) : (
-                <div className="pole pole-anim absolute inset-0 opacity-[0.16]" aria-hidden />
-              )}
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_35%,rgba(15,12,10,.2),rgba(15,12,10,.85)_75%)]" />
-              {!heroPhoto && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center">
-                  <MoustacheMark className="mb-5 h-10 w-auto text-accent" />
-                  <p className="display text-4xl leading-none">Fio do Bigode</p>
-                  <p className="label-caps mt-3 text-xs text-soft">Barbearia · Piracicaba</p>
-                  <div className="brass-rule my-6 w-24" />
-                  <p className="label-caps text-xs text-accent-hi">Desde 2016</p>
-                </div>
-              )}
-            </div>
-          </div>
+        <div className="relative mx-auto flex w-full max-w-xs items-center justify-center sm:max-w-sm lg:max-w-none">
+          <div
+            className="pointer-events-none absolute inset-[-12%] -z-10 bg-[radial-gradient(closest-side,rgba(201,153,63,.28),rgba(201,153,63,.08)_55%,transparent_75%)]"
+            aria-hidden
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/brand/logo-transparente.webp"
+            alt="Fio do Bigode Barbearia — logotipo com duas navalhas cruzadas sobre um triângulo"
+            width={1000}
+            height={1128}
+            fetchPriority="high"
+            className="animate-rise h-auto w-full max-w-[460px] drop-shadow-[0_18px_40px_rgba(0,0,0,.55)]"
+          />
         </div>
       </div>
     </section>
