@@ -1,5 +1,6 @@
 "use client";
 
+import { BarberPole } from "@/components/site/barber-pole";
 import { AnchorButton, LinkButton } from "@/components/ui/button";
 import { IconArrow, IconStar, IconWhatsApp } from "@/components/ui/icons";
 import { useBusiness, useOpenStatus } from "@/hooks/use-business";
@@ -12,13 +13,13 @@ export function Hero() {
   return (
     <section className="grain relative isolate overflow-hidden border-b border-edge">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_75%_20%,rgba(201,153,63,.16),transparent_55%),linear-gradient(180deg,#1b130d,#0f0c0a)]" />
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 pt-14 pb-16 md:pt-20 md:pb-24 lg:grid-cols-[1.15fr_.85fr]">
+      <div className="mx-auto grid max-w-6xl grid-cols-[2.75rem_1fr] items-center gap-x-5 gap-y-12 px-5 pt-14 pb-16 md:pt-20 md:pb-24 lg:grid-cols-[4rem_1.1fr_.8fr] lg:gap-x-12">
+        <div className="self-stretch" aria-hidden>
+          <BarberPole />
+        </div>
         <div className="animate-rise">
-          <p className="label-caps mb-5 flex items-center gap-3 text-sm text-accent-hi">
-            <span className="pole pole-anim inline-block h-3.5 w-9 rounded-[2px]" aria-hidden />
-            Barbearia · São Dimas, Piracicaba
-          </p>
-          <h1 className="display text-[clamp(2.7rem,7.4vw,5.6rem)] leading-[0.98] text-balance">
+          <p className="label-caps mb-5 text-sm text-accent-hi">Barbearia · São Dimas, Piracicaba</p>
+          <h1 className="display text-[clamp(2.2rem,7.4vw,5.6rem)] leading-[0.98] text-balance">
             A mais clássica
             <br />
             de <em className="text-accent-hi not-italic">Piracicaba.</em>
@@ -90,7 +91,7 @@ export function Hero() {
           </dl>
         </div>
 
-        <div className="relative mx-auto flex w-full max-w-xs items-center justify-center sm:max-w-sm lg:max-w-none">
+        <div className="relative col-span-2 mx-auto flex w-full max-w-xs items-center justify-center sm:max-w-sm lg:col-span-1 lg:max-w-none">
           <div
             className="pointer-events-none absolute inset-[-12%] -z-10 bg-[radial-gradient(closest-side,rgba(201,153,63,.28),rgba(201,153,63,.08)_55%,transparent_75%)]"
             aria-hidden
